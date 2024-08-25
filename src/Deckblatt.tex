@@ -1,0 +1,147 @@
+\documentclass[a4paper,12pt]{book}
+%This is used to set the class od document like report,book,article,beamer,letter,memoir. In square bracket we can set the font size and paper size of our document.
+
+
+\usepackage{graphicx} % Required for inserting images
+
+\linespread{1.5}
+%It is used to change spacing between lines like 1.5, 2, 2.5 etc
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+%By using this package we can control the margins of our page like margin from left , right, top , bottom
+ 
+ \pagenumbering{Roman}
+%It is used to set the style of page numbering 
+ 
+ \usepackage{acronym}
+ % This package is used to add abbreviations 
+
+ 
+\usepackage[german]{babel}
+% By using this we can change the language like German, French, Arabic etc
+
+
+\usepackage{listings}
+% By using this we can add Listings
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Lernkarten-HERO\\
+Webbasierte Prüfungsvorbereitung}
+\fancyhead[R]{\includegraphics[width=0.2\textwidth]{./figures/BBQ-Logo.png}}
+\setlength{\headsep}{40pt}
+
+% Above all these 6 commands, it is used to add headers, By using same we can add footers ass well by replacing the word head with foot.
+
+% Now from here After \begin{document} we will add all of our text e.g chapters sesctions etc. So if we add any section or chapter before this, it will not work and will give errorss.
+
+\begin{document}
+% by using titlepage environment we can design a title page.
+
+\begin{titlepage}
+%Begin{center environment is used to keep the text in center}
+
+\begin{center}
+%By using figure environment we can add figures, illustrations.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.40\textwidth]{./figures/duesseldorf-ihk.png}
+    %\caption{Caption}
+    %\label{fig:my_label}
+\end{figure}
+
+\vspace{0.2cm}
+%Vspace is used the change the vertical distance between lines
+
+Abschlussprüfung Winter 2024/25\\ 
+\vspace{0.2cm}
+
+{\fontsize{14}{16}\selectfont
+\textbf{Fachinformatiker für Anwendungsentwicklung}\\
+}
+
+\vspace{0.2cm}
+Dokumentation zur betrieblichen Projektarbeit\\
+\vspace{2.4cm}
+
+{\fontsize{24}{26}\selectfont
+\textbf{Lernkarten-HERO}\\
+}
+\vspace{0.2cm}
+
+{\fontsize{14}{16}\selectfont
+\textbf{Webbasierte Prüfungsvorbereitung}\\
+}
+
+\vspace{2.4cm}
+Düsseldorf, den 06.12.2024\\
+\vspace{0.5cm}
+\underline{Prüfungsbewerber:} \\
+\textbf{Ersin Simsek}\\
+Kirchwiesen 7\\
+49377 Vechta-Langförden
+\vspace{2.4cm}
+
+\underline{Ausbildungsbetrieb:}\\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.10\textwidth]{./figures/BBQ-Logo.png}
+    %\caption{Caption}
+    %\label{fig:my_label}
+\end{figure}
+\vspace{-0.8cm}
+BBQ Weiterbildung GmbH\\
+Wagnerstr. 96\\
+49377 Düsseldorf
+\end{center}
+\end{titlepage}
+
+
+
+\tableofcontents
+%This is for add table of contents.
+
+\listoffigures
+%This is for add list of figures.
+
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+%By using this we can customize the name means can set name 
+
+\listoftables
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+
+\lstlistoflistings
+\addcontentsline{toc}{chapter}{Listings}
+
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+
+\begin{acronym}
+ \acro{BBQ}{Weiterbildung GmbH}
+\end{acronym}
+%Acronym environment is use to add Abbreviations.
+
+\chapter{Einleitung}
+%Now from herer we can add chapters and sections by using these commands.
+
+\pagenumbering{arabic}
+In der folgenden Projektdokumentation wird der Ablauf des Abschlussprojektes, das durch den Autor im Rahmen seiner Abschlussprüfung zum Fachinformatiker mit der Fachrichtung Anwendungsentwicklung durchgeführt wurde, erläutert. Das Projekt wird in der Alte Oldenburger Krankenversicherung AG (AO) durchgeführt, welche der Ausbildungsbetrieb des Autors ist. Die AO ist eine private Krankenversicherung mit Sitz in Vechta, die zur Versicherungsgruppe Hannover (VGH) gehört. Bei der AO sind zurzeit 240 Mitarbeiter beschäftigt.  Zu den Produkten der AO zählen neben privaten Krankheitskostenvollversicherungen und Pflegeversicherungen auch Zusatzversicherungen, die die gesetzliche Krankenversicherung um zusätzliche Leistungen ergänzen. Ziel dieser Dokumentation ist es, die durchzuführenden Schritte des Projektes von der Planung bis zum Deployment zu erläutern und dies mit geeigneten Diagrammen und Dokumenten zu unterstützen.
+\section{Projektbeschreibung}
+Im Rahmen des Projektes zur Automatisierung des Prozesses der Beitragsanpassung (BAP) und zur Entlastung der Mathematik-Abteilung, zusammengefasst im Projekt Prozessunterstützung Mathematik (PUMA), soll eine Webanwendung mit Datenbankzugriff erstellt werden, die automatisch verschiedene Daten in Bezug auf die Beiträge und Kosten eines Versicherungstarifes ermittelt, verarbeitet und darstellt.
+Der Fachbereich benötigt vor allem bei der Erstellung von Versicherungsangeboten eine Übersicht, die die aktuell geltenden Beiträge, die eine Person abhängig von dem gewählten Tarif und ihrem Alter bei Vertragsabschluss zahlen muss, darstellt. Außerdem ist die AO durch das Versicherungsvertragsgesetz (VVG) dazu verpflichtet, eine Übersicht darüber zu führen, wie hoch die einmaligen und laufenden Kosten bei einem Vertragsabschluss eines Versicherten in einem Tarif sind. Ebenfalls wird durch das VVG vorgeschrieben, dass eine Übersicht über die Beitragsverläufe der letzten zehn Jahre einer 35jährigen Person für alle Tarife erstellt werden muss.
+Diese Schritte sind jeweils zu einer BAP notwendig, die jährlich zum 01. Januar und eventuell zum 01. Juli durchgeführt wird. Dabei kann der Beitrag, der in einem Tarif bezahlt werden muss, z.B. aufgrund von höheren Kosten im Gesundheitsbereich angehoben oder gesenkt werden. Laut VVG ist es notwendig, eine Übersicht zu pflegen, in der ersichtlich wird, wann der Beitrag eines bestimmten Tarifes zum letzten Mal durch eine BAP verändert wurde. Außerdem möchte die Antragsabteilung eine Übersicht über die historischen BAPs eines Tarifs haben.
+
+\section{Projektziel}
+Ziel dieses Projektes ist die erfolgreiche Umsetzung einer neuen Webanwendung, mit der automatisiert verschiedene Daten für den Nutzer a
+
+
+\end{document}
