@@ -18,3 +18,7 @@ jobs:
         
       - name: LaTeX kompilieren
         run: pdflatex -output-directory=output src/Deckblatt.tex
+
+      - name: Ausgabeverzeichnis
+        run: pdflatex -output-directory=${{github.workspace }}/output $ {{ github.workspace }}/src/Deckblatt.tex 
+        working-directory: ${{github-workspace }}
