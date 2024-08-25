@@ -9,8 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install LaTeX
+      - name: Repository klonen
+        uses: actions/checkout@v3
+        
+      - name: LaTeX installieren
         run: sudo apt-get install texlive-full
-      - name: Compile LaTeX
-        run: pdflatex src/Deckblatt.tex
+        
+      - name: LaTeX kompilieren
+        run: pdflatex -output-directory=output src/Deckblatt.tex
+        
+      - name: PDF hochladen
+        uses: actions/upload-artifact@v3
+        with:
+          name: Deckblatt
+          path: output/Deckblatt.pdf
+
