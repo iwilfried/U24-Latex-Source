@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Repository klonen
         uses: actions/checkout@v3
+        with:
+          node-version: '20'
         
       - name: LaTeX installieren
         run: sudo apt-get install texlive-full
