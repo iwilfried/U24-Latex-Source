@@ -23,4 +23,3 @@ jobs:
         with:
           name: Deckblatt
           path: output/Deckblatt.pdf
-
