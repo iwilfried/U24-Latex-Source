@@ -18,9 +18,3 @@ jobs:
         
       - name: LaTeX kompilieren
         run: pdflatex -output-directory=output src/Deckblatt.tex
-        
-      - name: PDF hochladen
-        uses: actions/upload-artifact@v3
-        with:
-          name: Deckblatt
-          path: output/Deckblatt.pdf
