@@ -8,28 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Repository klonen
-        uses: actions/checkout@v4
-      
-        
-      - name: LaTeX installieren
-        run: sudo apt-get install texlive-full
-        
-      - name: Verzeichnisstruktur anzeigen
-        run: ls -R
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Ausgabeverzeichnis erstellen und Berechtigungen setzen
-        run: mkdir -p output
-        
+      - name: Setup TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
 
-      - name: Deckblatt kompilieren
-        working-directory: ${{ github.workspace }}
+      - name: Compile LaTeX document
+        run: |
+          pdflatex your_document.tex
+          pdflatex your_document.tex  # Zweimal ausführen für Referenzen
 
-        run: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=$PWD/output $PWD/src/Deckblatt.tex
-
-      - name: Artefakt hochladen
+      - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
         with:
           name: Deckblatt
-          path: output/Deckblatt.pdf
+          path: your_document.pdf
+
