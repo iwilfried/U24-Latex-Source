@@ -8,28 +8,46 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Repository klonen
+      - name: Checkout code
         uses: actions/checkout@v4
-      
-        
-      - name: LaTeX installieren
-        run: sudo apt-get install texlive-full
-        
-      - name: Verzeichnisstruktur anzeigen
-        run: ls -R
 
-      - name: Ausgabeverzeichnis erstellen und Berechtigungen setzen
-        run: mkdir -p output
-        
+      - name: Setup TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
 
-      - name: Deckblatt kompilieren
-        working-directory: ${{ github.workspace }}
+      - name: Compile LaTeX document
+        run: |
+          pdflatex ./src/Deckblatt.tex
+          pdflatex ./src/Deckblatt.tex  # Zweimal ausführen für Referenzen
 
-        run: pdflatex -interaction=nonstopmode -halt-on-error -output-directory=$PWD/output $PWD/src/Deckblatt.tex
-
-      - name: Artefakt hochladen
-        uses: actions/upload-artifact@v2
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
         with:
           name: Deckblatt
-          path: output/Deckblatt.pdf
+          path: Deckblatt.pdf
+
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Deckblatt
+          path: Deckblatt.pdf
+
+      - name: Unzip artifact
+        run: unzip Deckblatt.zip -d output_directory
+
+      - name: Upload PDF
+        run: |
+          git config --local user.email "wilfried.ifland@example.com"
+          git config --local user.name "iwilfried"
+          git add output_directory/Deckblatt.pdf
+          git commit -m "Add generated PDF"
+          git push
