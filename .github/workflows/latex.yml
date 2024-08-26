@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Deckblatt
-          path: https://github.com/iwilfried/U24-Latex-Source/actions/runs/10557054109/artifacts/1853756818
+          path: artifacts/Deckblatt.zip
 
