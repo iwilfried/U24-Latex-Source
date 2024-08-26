@@ -20,12 +20,12 @@ jobs:
 
       - name: Compile LaTeX document
         run: |
-          pdflatex your_document.tex
-          pdflatex your_document.tex  # Zweimal ausführen für Referenzen
+          pdflatex ./src/Deckblatt.tex
+          pdflatex ./src/Deckblatt.tex  # Zweimal ausführen für Referenzen
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
         with:
           name: Deckblatt
-          path: your_document.pdf
+          path: Deckblatt.pdf
 
