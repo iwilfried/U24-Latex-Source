@@ -29,3 +29,19 @@ jobs:
           name: Deckblatt
           path: Deckblatt.pdf
 
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Unzip artifact
+        run: unzip Deckblatt.zip -d output_directory
+
+      - name: Upload PDF
+        run: |
+          git config --local user.email "wilfried.ifland@example.com"
+          git config --local user.name "iwilfried"
+          git add output_directory/Deckblatt.pdf
+          git commit -m "Add generated PDF"
+          git push
